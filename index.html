@@ -3,14 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu Casa Con Laura — California Real Estate</title>
-  <meta name="description" content="Laura D'Hernandez, California REALTOR®. Bilingual guidance for buyers, sellers and investors.">
+  <title>California Villas</title>
+  <meta name="description" content="California Villas — Investments, Property Management and Events. The corporate platform behind Laura D'Hernandez serving clients across Southern California.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    /* ── NAV BRAND ── */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .brand-main {
+      font-family: var(--serif);
+      font-size: 18px;
+      background: linear-gradient(
+        135deg,
+        #fff4c9 0%,
+        #f7d774 20%,
+        #d4a94f 40%,
+        #b8895a 60%,
+        #f7d774 80%,
+        #fff4c9 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 0 6px rgba(184,137,90,0.25),
+        0 2px 6px rgba(0,0,0,0.3);
+    }
+    .brand-sub {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      background: linear-gradient(
+        135deg,
+        #f5deb3,
+        #b8895a,
+        #e6c27a
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.95;
+    }
+
     /* ── HERO ── */
     .hero {
       min-height: calc(100vh - var(--nav-h));
@@ -135,7 +179,6 @@
       gap: 40px;
       align-items: start;
     }
-    .intro-label { padding-top: 8px; }
     .intro-body {
       font-family: var(--serif);
       font-size: clamp(22px,2.8vw,36px);
@@ -209,93 +252,212 @@
       background: var(--warm);
     }
     .post-card:first-child .post-card-img { height: 360px; }
-    .post-card-img img {
+    .post-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .post-card-body { padding: 22px; flex: 1; }
+    .post-tag { color: var(--gold); font-size: 10px; text-transform: uppercase; letter-spacing: .18em; display: block; margin-bottom: 8px; }
+    .post-title { font-family: var(--serif); font-size: 24px; font-weight: 300; line-height: 1.15; color: var(--charcoal); margin-bottom: 10px; }
+    .post-excerpt { font-size: 14px; color: var(--mid); line-height: 1.75; }
+
+    /* ── ABOUT SECTION ── */
+    .about-section { padding: 90px 0; background: var(--cream-2); }
+    .about-wrap {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 560px;
+      background: var(--warm);
+      position: relative;
+    }
+    .about-photo {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center top;
       display: block;
     }
-    .post-card-body { padding: 22px; flex: 1; }
-    .post-tag {
+    .about-name {
+      font-family: var(--serif);
+      font-size: clamp(38px,5vw,64px);
+      font-weight: 300;
+      line-height: 1.02;
+    }
+    .about-name em { color: var(--gold); font-style: italic; }
+    .about-meta {
       color: var(--gold);
-      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: .18em;
-      display: block;
-      margin-bottom: 8px;
+      font-size: 10px;
+      margin: 12px 0 24px;
     }
-    .post-title {
-      font-family: var(--serif);
-      font-size: 24px;
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--charcoal);
-      margin-bottom: 10px;
+    .about-copy {
+      display: grid;
+      gap: 16px;
+      color: var(--mid);
+      font-size: 16px;
+      line-height: 1.9;
     }
-    .post-excerpt { font-size: 14px; color: var(--mid); line-height: 1.75; }
+    .about-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    .about-badges span {
+      border: 1px solid rgba(184,137,90,.28);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.6);
+    }
 
-    /* ── VIDEOS HOME ── */
+    /* Gallery strip below about */
+    .gallery-strip {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 0 0 80px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--warm);
+      cursor: pointer;
+    }
+    .gallery-item:first-child { grid-row: span 2; height: 500px; }
+    .gallery-item:not(:first-child) { height: 244px; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+    /* ── VIDEOS SECTION ── */
     .videos-section { padding: 80px 0; background: var(--char-3); }
     .videos-wrap { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
     .videos-section .section-title { color: var(--cream); }
     .videos-section .section-link { color: var(--gold); }
-    .vgrid-home {
+
+    .vid-intro-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+    .vid-intro-text {
+      font-family: var(--serif);
+      font-size: clamp(18px,2vw,24px);
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(235,225,210,.8);
+    }
+    .vid-cta-block {
+      padding: 24px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(184,137,90,.2);
+      border-radius: var(--radius);
+    }
+    .vid-cta-block .lead { color: rgba(220,205,185,.75); font-size: 14px; }
+    .ig-btn-grad {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
+      color: white;
+      border-radius: 8px;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: opacity .2s;
+    }
+    .ig-btn-grad:hover { opacity: .88; }
+
+    .vgrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 20px;
     }
-    .vcard-h {
+    .vcard {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(184,137,90,.15);
       border-radius: var(--radius);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       transition: border-color .2s;
     }
-    .vcard-h:hover { border-color: rgba(184,137,90,.4); }
-    .vcard-h-media {
+    .vcard:hover { border-color: rgba(184,137,90,.4); }
+    .vcard-media {
+      position: relative;
       width: 100%;
       padding-bottom: 56.25%;
-      position: relative;
       height: 0;
-      background: linear-gradient(160deg,#2a1f14 0%,#3e2c1c 100%);
+      overflow: hidden;
+      background: #120d06;
+      flex-shrink: 0;
+    }
+    .vcard-media video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
       cursor: pointer;
     }
-    .vcard-h-play {
+    .vcard-play {
       position: absolute;
       inset: 0;
       display: grid;
       place-items: center;
+      background: rgba(20,14,6,.4);
+      transition: opacity .25s;
+      z-index: 2;
+      pointer-events: none;
     }
-    .play-btn-h {
-      width: 54px; height: 54px;
-      border-radius: 50%;
-      border: 0;
-      background: var(--gold);
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
+    .vcard-media.playing .vcard-play { opacity: 0; }
+    .play-btn {
+      width: 62px; height: 62px;
+      border-radius: 50%; border: 0;
+      background: var(--gold); color: white;
+      font-size: 22px; cursor: pointer;
+      display: grid; place-items: center;
+      pointer-events: all;
       transition: background .2s, transform .2s;
     }
-    .vcard-h:hover .play-btn-h { background: var(--gold-dk); transform: scale(1.08); }
-    .vcard-h-info { padding: 18px; }
-    .vcard-h-tag {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 6px;
+    .play-btn:hover { background: var(--gold-dk); transform: scale(1.08); }
+    .vcard-featured { grid-column: span 2; }
+    .vcard-featured .vcard-media { padding-bottom: 42.85%; }
+    .vcard-info { padding: 20px; flex: 1; }
+    .vcard-tag { font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: var(--gold); }
+    .vcard-title { font-family: var(--serif); font-size: 22px; line-height: 1.2; color: var(--cream); margin-top: 8px; font-weight: 300; }
+    .vcard-sub { color: rgba(200,185,165,.65); margin-top: 8px; font-size: 13px; }
+
+    .ig-strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 42px 0 0;
+      border-top: 1px solid rgba(184,137,90,.15);
+      margin-top: 40px;
     }
-    .vcard-h-title {
-      font-family: var(--serif);
-      font-size: 19px;
-      color: var(--cream);
-      font-weight: 300;
-      line-height: 1.25;
-    }
+    .ig-strip-text { color: var(--cream); font-family: var(--serif); font-size: clamp(22px,2.8vw,34px); font-weight: 300; }
+    .ig-strip-text em { color: var(--gold); font-style: italic; }
+    .ig-strip .contact-socials a { color: rgba(220,205,185,.8); border-color: rgba(184,137,90,.25); background: rgba(255,255,255,.05); }
+    .ig-strip .contact-socials a:hover { background: rgba(184,137,90,.18); color: #fff; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
@@ -303,35 +465,55 @@
       .hero-right { min-height: 380px; }
       .spec-grid { grid-template-columns: 1fr 1fr; }
       .blog-grid { grid-template-columns: 1fr 1fr; }
-      .vgrid-home { grid-template-columns: 1fr 1fr; }
+      .about-wrap { grid-template-columns: 1fr; }
+      .about-photo-wrap { height: 400px; }
+      .vgrid { grid-template-columns: 1fr 1fr; }
+      .vcard-featured { grid-column: span 2; }
+      .vcard-featured .vcard-media { padding-bottom: 56.25%; }
+      .vid-intro-row { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: span 1; height: 320px; }
+
+      .nav-brand-text {
+        display: none;
+      }
+
+      .gallery-item:not(:first-child) { height: 200px; }
     }
     @media (max-width: 620px) {
       .blog-grid { grid-template-columns: 1fr; }
-      .vgrid-home { grid-template-columns: 1fr; }
+      .vgrid { grid-template-columns: 1fr; }
+      .vcard-featured { grid-column: span 1; }
       .spec-grid { grid-template-columns: 1fr; }
       .intro-wrap { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; height: 260px; }
     }
   </style>
 </head>
 <body>
-  <!-- Banner sitio web -->
   <div class="site-banner">
     <i class="bi bi-globe2"></i>
     Visit my Realtor: &nbsp;
     <a href="https://tucasaconlaura.com/" target="_blank" rel="noopener">tucasaconlaura.com</a>
   </div>
-  <!-- WhatsApp flotante -->
+
   <a href="https://wa.me/15628621902" target="_blank" rel="noopener" class="whatsapp-float" title="WhatsApp">
     <i class="bi bi-whatsapp"></i>
   </a>
+
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">
-      <img src="assets/images/logo.png" alt="Tu Casa Con Laura" class="nav-logo-img">
+      <img src="assets/images/logo.png" alt="California Villas" class="nav-logo-img">
+      <div class="nav-brand-text">
+        <span class="brand-main">California Villas</span>
+        <span class="brand-sub">Investments • Property Management • Events</span>
+      </div>
     </a>
     <ul class="nav-links">
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="webinars.html">Videos</a></li>
+      <li><a href="index.html#about">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
@@ -339,14 +521,15 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+
   <nav class="nav-mobile" id="nav-mobile">
-    <a href="about.html">About</a>
+    <a href="index.html">Home</a>
     <a href="blog.html">Blog</a>
-    <a href="webinars.html">Videos</a>
+    <a href="index.html#about">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- HERO -->
+  <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-left">
       <p class="hero-eyebrow">California REALTOR® · Since 2007</p>
@@ -355,7 +538,7 @@
       <p class="hero-desc">Bilingual real estate expert serving Los Angeles County, Riverside and San Bernardino. Specializing in first-time buyers, life transitions, short sales, multifamily and commercial opportunities.</p>
       <div class="hero-actions">
         <a href="contact.html" class="btn-primary"><i class="bi bi-calendar-check"></i> Book a Consultation</a>
-        <a href="about.html" class="btn-ghost"><i class="bi bi-person"></i> Meet Laura</a>
+        <a href="index.html#about" class="btn-ghost"><i class="bi bi-person"></i> Meet Laura</a>
       </div>
       <div class="hero-stats">
         <div><span class="stat-num">17+</span><span class="stat-label">Years Licensed</span></div>
@@ -372,7 +555,7 @@
     </div>
   </section>
 
-  <!-- INTRO -->
+  <!-- ── INTRO ── -->
   <section class="intro">
     <div class="intro-wrap">
       <div class="intro-label">
@@ -382,12 +565,12 @@
     </div>
   </section>
 
-  <!-- SPECIALTIES -->
+  <!-- ── SPECIALTIES ── -->
   <section class="specialties">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">How Laura can <em>help you</em></h2>
-        <a href="about.html" class="section-link">More about Laura</a>
+        <a href="index.html#about" class="section-link">More about Laura</a>
       </div>
       <div class="spec-grid">
         <article class="spec-card">
@@ -414,7 +597,7 @@
     </div>
   </section>
 
-  <!-- BLOG PREVIEW -->
+  <!-- ── BLOG PREVIEW ── -->
   <section class="blog-preview">
     <div class="blog-wrap">
       <div class="section-header">
@@ -422,9 +605,9 @@
         <a href="blog.html" class="section-link">All articles</a>
       </div>
       <div class="blog-grid">
-        <a href="blog-post.html" class="post-card">
+        <a href="blog.html#post-pricing" class="post-card">
           <div class="post-card-img">
-            <img src="assets/images/blog/post-01.png" alt="Buying your first home">
+            <img src="assets/images/blog/post-04.png" alt="Buying your first home">
           </div>
           <div class="post-card-body">
             <span class="post-tag">Home Buying</span>
@@ -432,7 +615,7 @@
             <p class="post-excerpt">A practical guide for first-time buyers who want more clarity before they start touring homes.</p>
           </div>
         </a>
-        <a href="blog-post.html" class="post-card">
+        <a href="blog.html#post-divorce" class="post-card">
           <div class="post-card-img">
             <img src="assets/images/blog/post-02.png" alt="Selling during a divorce">
           </div>
@@ -442,7 +625,7 @@
             <p class="post-excerpt">A calm, organized plan makes a difficult process more manageable.</p>
           </div>
         </a>
-        <a href="blog-post.html" class="post-card">
+        <a href="blog.html#post-downpayment" class="post-card">
           <div class="post-card-img">
             <img src="assets/images/blog/post-03.png" alt="Down payment assistance">
           </div>
@@ -456,46 +639,156 @@
     </div>
   </section>
 
-  <!-- VIDEOS -->
-  <section class="videos-section">
-    <div class="videos-wrap">
-      <div class="section-header">
-        <h2 class="section-title">Watch Laura <em>in action</em></h2>
-        <a href="webinars.html" class="section-link">See all videos</a>
+  <!-- ── ABOUT ── -->
+  <section class="about-section" id="about">
+    <div class="about-wrap">
+      <div class="about-photo-wrap">
+        <img src="assets/images/laura-about.jpg" alt="Laura D'Hernandez" class="about-photo">
       </div>
-      <div class="vgrid-home">
-        <article class="vcard-h">
-          <div class="vcard-h-media">
-            <div class="vcard-h-play"><button class="play-btn-h" onclick="location.href='webinars.html'"><i class="bi bi-play-fill"></i></button></div>
-          </div>
-          <div class="vcard-h-info">
-            <span class="vcard-h-tag">Conference</span>
-            <p class="vcard-h-title">Laura at the 2026 Real Estate Conference</p>
-          </div>
-        </article>
-        <article class="vcard-h">
-          <div class="vcard-h-media">
-            <div class="vcard-h-play"><button class="play-btn-h" onclick="location.href='webinars.html'"><i class="bi bi-play-fill"></i></button></div>
-          </div>
-          <div class="vcard-h-info">
-            <span class="vcard-h-tag">Property Tour</span>
-            <p class="vcard-h-title">Townhouse Listing</p>
-          </div>
-        </article>
-        <article class="vcard-h">
-          <div class="vcard-h-media">
-            <div class="vcard-h-play"><button class="play-btn-h" onclick="location.href='webinars.html'"><i class="bi bi-play-fill"></i></button></div>
-          </div>
-          <div class="vcard-h-info">
-            <span class="vcard-h-tag">Sold</span>
-            <p class="vcard-h-title">Casa Sold</p>
-          </div>
-        </article>
+      <div>
+        <p class="page-eyebrow">About Laura</p>
+        <h2 class="about-name">Laura <em>D'Hernandez</em></h2>
+        <p class="about-meta">DRE #01820066 · Licensed Since 2007 · Big Block Powerhouse Realty</p>
+        <div class="about-copy">
+          <p>Laura De Hernandez, known as Tu Casa Con Laura, is a licensed California REALTOR® with nearly two decades of experience guiding buyers, sellers and investors with clarity and care.</p>
+          <p>Based in Long Beach, she proudly serves Long Beach, South Gate, Huntington Park, Los Angeles and Compton, while working throughout Los Angeles, Riverside and San Bernardino counties.</p>
+          <p>She specializes in first-time homebuyers, divorce-related home sales, short sales, probate, down payment assistance, multifamily opportunities, commercial real estate and business opportunities. Bilingual in English and Spanish.</p>
+        </div>
+        <div class="about-badges">
+          <span>Bilingual EN/ES</span>
+          <span>First-Time Buyers</span>
+          <span>Divorce Sales</span>
+          <span>Short Sales</span>
+          <span>Commercial</span>
+          <span>Top Producer</span>
+        </div>
+        <div class="social-pills" style="margin-top:28px;">
+          <a href="https://www.instagram.com/tucasaconlaura/" target="_blank" rel="noopener"><i class="bi bi-instagram"></i> Instagram</a>
+          <a href="https://www.facebook.com/TuCasaConLaura/" target="_blank" rel="noopener"><i class="bi bi-facebook"></i> Facebook</a>
+          <a href="https://www.tiktok.com/@tucasaconlaura" target="_blank" rel="noopener"><i class="bi bi-tiktok"></i> TikTok</a>
+          <a href="https://www.linkedin.com/in/tucasaconlaura" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo gallery -->
+    <div class="gallery-strip">
+      <div class="section-header" style="margin-top:56px;">
+        <h2 class="section-title">A closer look at <em>Laura</em></h2>
+        <a href="contact.html" class="section-link">Contact Laura</a>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="assets/images/gallery/photo-01.png" alt="Laura photo 1"></div>
+        <div class="gallery-item"><img src="assets/images/gallery/photo-02.png" alt="Laura photo 2"></div>
+        <div class="gallery-item"><img src="assets/images/gallery/photo-03.png" alt="Laura photo 3"></div>
+        <div class="gallery-item"><img src="assets/images/gallery/photo-04.png" alt="Laura photo 4"></div>
+        <div class="gallery-item"><img src="assets/images/gallery/photo-05.png" alt="Laura photo 5"></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT STRIP -->
+  <!-- ── VIDEOS ── -->
+  <section class="videos-section" id="videos">
+    <div class="videos-wrap">
+      <div class="section-header">
+        <h2 class="section-title">Real estate <em>in real life</em></h2>
+      </div>
+
+      <div class="vid-intro-row">
+        <p class="vid-intro-text">Every video Laura shares is meant to make the process feel more understandable, more human and more actionable.</p>
+        <div class="vid-cta-block">
+          <p class="section-kicker">Follow for more</p>
+          <p class="lead">New property tours, market updates and real estate tips posted regularly on social media.</p>
+          <a href="https://www.instagram.com/tucasaconlaura/" class="ig-btn-grad" target="_blank" rel="noopener">
+            <i class="bi bi-instagram"></i> Follow @tucasaconlaura
+          </a>
+        </div>
+      </div>
+
+      <div class="vgrid">
+        <article class="vcard vcard-featured">
+          <div class="vcard-media" id="vm1">
+            <video src="assets/videos/v1.mp4" preload="metadata" playsinline></video>
+            <div class="vcard-play">
+              <button class="play-btn" onclick="playVideo('vm1')"><i class="bi bi-play-fill"></i></button>
+            </div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-tag">Conference · Featured</span>
+            <h3 class="vcard-title">Laura at the 2026 Real Estate Conference</h3>
+            <p class="vcard-sub">Live on camera — market insights, bilingual outreach y lo que los compradores realmente preguntan en 2026.</p>
+          </div>
+        </article>
+        <article class="vcard">
+          <div class="vcard-media" id="vm2">
+            <video src="assets/videos/v2.mp4" preload="metadata" playsinline></video>
+            <div class="vcard-play">
+              <button class="play-btn" onclick="playVideo('vm2')"><i class="bi bi-play-fill"></i></button>
+            </div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-tag">Property Tour</span>
+            <h3 class="vcard-title">Townhouse Listing</h3>
+            <p class="vcard-sub">A walkthrough of a recent townhouse listing in the LA area.</p>
+          </div>
+        </article>
+        <article class="vcard">
+          <div class="vcard-media" id="vm3">
+            <video src="assets/videos/v3.mp4" preload="metadata" playsinline></video>
+            <div class="vcard-play">
+              <button class="play-btn" onclick="playVideo('vm3')"><i class="bi bi-play-fill"></i></button>
+            </div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-tag">Sold</span>
+            <h3 class="vcard-title">Casa Sold</h3>
+            <p class="vcard-sub">Another client gets the keys — here's how we got there.</p>
+          </div>
+        </article>
+        <article class="vcard">
+          <div class="vcard-media" id="vm4">
+            <video src="assets/videos/v4.mp4" preload="metadata" playsinline></video>
+            <div class="vcard-play">
+              <button class="play-btn" onclick="playVideo('vm4')"><i class="bi bi-play-fill"></i></button>
+            </div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-tag">Behind the Scenes</span>
+            <h3 class="vcard-title">A Day in Laura's Work</h3>
+            <p class="vcard-sub">What the day-to-day really looks like when you're helping families move forward.</p>
+          </div>
+        </article>
+        <article class="vcard">
+          <div class="vcard-media" id="vm5">
+            <video src="assets/videos/v5.mp4" preload="metadata" playsinline></video>
+            <div class="vcard-play">
+              <button class="play-btn" onclick="playVideo('vm5')"><i class="bi bi-play-fill"></i></button>
+            </div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-tag">Market Update</span>
+            <h3 class="vcard-title">LA Market — What Buyers Should Know</h3>
+            <p class="vcard-sub">A quick perspective on rates, inventory and what Laura is telling clients right now.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="ig-strip">
+        <div>
+          <div class="ig-strip-text">See more on <em>social media</em></div>
+          <div style="color:rgba(200,185,165,.6);margin-top:6px;font-size:13px;">Instagram · Facebook · TikTok · LinkedIn</div>
+        </div>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/tucasaconlaura/" target="_blank" rel="noopener"><i class="bi bi-instagram"></i> Instagram</a>
+          <a href="https://www.facebook.com/TuCasaConLaura/" target="_blank" rel="noopener"><i class="bi bi-facebook"></i> Facebook</a>
+          <a href="https://www.tiktok.com/@tucasaconlaura" target="_blank" rel="noopener"><i class="bi bi-tiktok"></i> TikTok</a>
+          <a href="https://www.linkedin.com/in/tucasaconlaura" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT STRIP ── -->
   <section class="contact-strip">
     <div>
       <h2 class="contact-strip-title">Ready to find<br><em>your home?</em></h2>
@@ -524,19 +817,19 @@
       <div>
         <p class="footer-col-title">Navigate</p>
         <ul class="footer-links">
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="webinars.html">Videos</a></li>
+          <li><a href="index.html#about">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-col-title">Specialties</p>
         <ul class="footer-links">
-          <li><a href="about.html">First-Time Buyers</a></li>
-          <li><a href="about.html">Divorce Sales</a></li>
-          <li><a href="about.html">Short Sales</a></li>
-          <li><a href="about.html">Commercial</a></li>
+          <li><a href="index.html#about">First-Time Buyers</a></li>
+          <li><a href="index.html#about">Divorce Sales</a></li>
+          <li><a href="index.html#about">Short Sales</a></li>
+          <li><a href="index.html#about">Commercial</a></li>
         </ul>
       </div>
       <div>
@@ -555,6 +848,26 @@
     </div>
   </footer>
 
+  <script src="js/gallery.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    function playVideo(id) {
+      const container = document.getElementById(id);
+      const video = container.querySelector('video');
+      document.querySelectorAll('.vcard-media').forEach(m => {
+        if (m.id !== id) { m.querySelector('video').pause(); m.classList.remove('playing'); }
+      });
+      video.play();
+      container.classList.add('playing');
+      video.addEventListener('pause', () => container.classList.remove('playing'));
+      video.addEventListener('ended', () => container.classList.remove('playing'));
+    }
+    document.querySelectorAll('.vcard-media video').forEach(video => {
+      video.addEventListener('click', () => {
+        const container = video.closest('.vcard-media');
+        if (video.paused) playVideo(container.id); else video.pause();
+      });
+    });
+  </script>
 </body>
 </html>

@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog — Tu Casa Con Laura</title>
+  <title>Blog — California Villas</title>
+  <meta name="description" content="Real estate advice from Laura D'Hernandez — buying, selling, market insights and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    /* ── BLOG LIST ── */
     .blog-wrap {
       width: min(1200px, calc(100% - 40px));
       margin: 0 auto;
@@ -23,41 +25,17 @@
       border: 1px solid rgba(184,137,90,.13);
       background: rgba(255,255,255,.7);
       box-shadow: 0 8px 32px rgba(26,21,16,.06);
+      cursor: pointer;
+      transition: box-shadow .2s;
     }
-    .featured-media {
-      height: 460px;
-      overflow: hidden;
-      background: var(--warm);
-      flex-shrink: 0;
-    }
-    .featured-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    .featured-body {
-      padding: 42px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .featured-body h2 {
-      font-family: var(--serif);
-      font-size: clamp(28px,3.5vw,50px);
-      font-weight: 300;
-      line-height: 1.05;
-      margin: 10px 0 16px;
-    }
+    .featured-post:hover { box-shadow: 0 12px 40px rgba(26,21,16,.12); }
+    .featured-media { height: 460px; overflow: hidden; background: var(--warm); flex-shrink: 0; }
+    .featured-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .featured-body { padding: 42px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-body h2 { font-family: var(--serif); font-size: clamp(28px,3.5vw,50px); font-weight: 300; line-height: 1.05; margin: 10px 0 16px; }
     .featured-body p { color: var(--mid); font-size: 15px; line-height: 1.85; }
-    .meta {
-      color: var(--gold);
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      margin-top: 20px;
-    }
+    .meta { color: var(--gold); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-top: 20px; }
+
     .articles-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -67,46 +45,93 @@
     .article-card {
       overflow: hidden;
       border-radius: var(--radius);
-      text-decoration: none;
       background: rgba(255,255,255,.72);
       border: 1px solid rgba(184,137,90,.12);
       display: flex;
       flex-direction: column;
       transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
     }
-    .article-card:hover {
-      box-shadow: 0 10px 36px rgba(26,21,16,.1);
-      transform: translateY(-2px);
-    }
-    .article-card-img {
-      width: 100%;
-      height: 220px;
-      overflow: hidden;
-      background: var(--warm);
-      flex-shrink: 0;
-    }
-    .article-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
+    .article-card:hover { box-shadow: 0 10px 36px rgba(26,21,16,.1); transform: translateY(-2px); }
+    .article-card-img { width: 100%; height: 220px; overflow: hidden; background: var(--warm); flex-shrink: 0; }
+    .article-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .article-body { padding: 22px; flex: 1; }
-    .article-body h3 {
-      font-family: var(--serif);
-      font-size: 26px;
-      line-height: 1.1;
-      margin: 8px 0 10px;
-      font-weight: 300;
-      color: var(--charcoal);
-    }
+    .article-body h3 { font-family: var(--serif); font-size: 26px; line-height: 1.1; margin: 8px 0 10px; font-weight: 300; color: var(--charcoal); }
     .article-body p { color: var(--mid); font-size: 14px; line-height: 1.75; }
+
+    /* ── ARTICLE READER ── */
+    #article-view {
+      display: none;
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 90px;
+    }
+    #article-view.visible { display: block; }
+    .post-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 72px; align-items: start; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 36px;
+      transition: color .2s;
+      cursor: pointer;
+    }
+    .back-link:hover { color: var(--gold); }
+    .back-link::before { content: '←'; font-size: 14px; }
+
+    .article-tag { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: block; }
+    .article-title { font-family: var(--serif); font-size: clamp(34px,4vw,54px); font-weight: 300; line-height: 1.08; color: var(--charcoal); margin-bottom: 16px; }
+    .article-title em { font-style: italic; color: var(--gold); }
+    .article-meta { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--sand); display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+    .article-hero { width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: var(--radius); margin-bottom: 40px; background: var(--warm); }
+    .article-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .article-body-text { font-size: 16px; font-weight: 300; line-height: 1.9; color: var(--mid); }
+    .article-body-text h2 { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--charcoal); margin: 48px 0 14px; }
+    .article-body-text h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--charcoal); margin: 34px 0 10px; }
+    .article-body-text p { margin-bottom: 20px; }
+    .article-body-text strong { font-weight: 500; color: var(--charcoal); }
+    .article-body-text em { font-style: italic; color: var(--gold); }
+    .article-body-text ul, .article-body-text ol { padding-left: 24px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .article-body-text blockquote { border-left: 2px solid var(--gold); padding: 16px 24px; margin: 32px 0; background: rgba(184,137,90,.06); border-radius: 0 var(--radius) var(--radius) 0; font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--charcoal); }
+    .article-tip { background: rgba(184,137,90,.07); border-left: 2px solid var(--gold); padding: 18px 22px; margin: 28px 0; border-radius: 0 var(--radius) var(--radius) 0; }
+    .article-tip-label { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: block; font-weight: 500; }
+    .article-tip p { font-size: 14px; color: var(--mid); line-height: 1.75; margin: 0; }
+    .article-footer-author { margin-top: 60px; padding-top: 36px; border-top: 1px solid rgba(184,137,90,.2); display: flex; align-items: center; gap: 20px; }
+    .author-avatar { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; background: var(--warm); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-name { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--charcoal); }
+    .author-title { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-top: 3px; }
+
+    /* Sidebar */
+    .sidebar { position: sticky; top: calc(var(--nav-h) + 28px); }
+    .sidebar-card { padding: 28px; margin-bottom: 20px; border-radius: var(--radius); background: var(--cream-2); border: 1px solid rgba(184,137,90,.14); }
+    .sidebar-card-title { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(184,137,90,.18); }
+    .sidebar-laura { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .sidebar-photo { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; background: var(--warm); flex-shrink: 0; }
+    .sidebar-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .sidebar-name { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--charcoal); }
+    .sidebar-cred { font-size: 11px; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; margin-top: 2px; }
+    .sidebar-bio { font-size: 13px; color: var(--mid); line-height: 1.75; margin-bottom: 20px; }
+    .sidebar-cta { width: 100%; justify-content: center; }
+    .related-post { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid rgba(184,137,90,.1); text-decoration: none; cursor: pointer; }
+    .related-post:last-child { border-bottom: 0; }
+    .related-thumb { width: 58px; height: 58px; border-radius: 8px; overflow: hidden; background: var(--warm); flex-shrink: 0; }
+    .related-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .related-tag { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 4px; }
+    .related-title { font-family: var(--serif); font-size: 15px; color: var(--charcoal); line-height: 1.3; font-weight: 400; }
+    .related-post:hover .related-title { color: var(--gold); }
 
     @media (max-width: 940px) {
       .featured-post { grid-template-columns: 1fr; }
       .featured-media { height: 320px; }
       .articles-grid { grid-template-columns: 1fr 1fr; }
+      .post-wrap { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
     }
     @media (max-width: 600px) {
       .articles-grid { grid-template-columns: 1fr; }
@@ -116,37 +141,37 @@
   </style>
 </head>
 <body>
-  <!-- Banner -->
   <div class="site-banner"><i class="bi bi-globe2"></i> Visit my Realtor: &nbsp; <a href="https://tucasaconlaura.com/" target="_blank" rel="noopener">tucasaconlaura.com</a></div>
-  <!-- WhatsApp flotante -->
   <a href="https://wa.me/15628621902" target="_blank" rel="noopener" class="whatsapp-float" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">
       <img src="assets/images/logo.png" alt="Tu Casa Con Laura" class="nav-logo-img">
     </a>
     <ul class="nav-links">
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="blog.html" class="active">Blog</a></li>
-      <li><a href="webinars.html">Videos</a></li>
+      <li><a href="index.html#about">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
     <button class="nav-hamburger" id="nav-burger"><span></span><span></span><span></span></button>
   </nav>
   <nav class="nav-mobile" id="nav-mobile">
-    <a href="about.html">About</a><a href="blog.html">Blog</a>
-    <a href="webinars.html">Videos</a><a href="contact.html">Contact</a>
+    <a href="index.html">Home</a><a href="blog.html">Blog</a>
+    <a href="index.html#about">About</a><a href="contact.html">Contact</a>
   </nav>
 
-  <section class="page-hero">
+  <!-- PAGE HERO — changes title when reading an article -->
+  <section class="page-hero" id="blog-hero">
     <div class="page-hero-inner">
-      <p class="page-eyebrow">Blog</p>
-      <h1 class="page-title">Real estate advice with<br><em>clarity and care.</em></h1>
+      <p class="page-eyebrow" id="hero-eyebrow">Blog</p>
+      <h1 class="page-title" id="hero-title">Real estate advice with<br><em>clarity and care.</em></h1>
     </div>
   </section>
 
-  <main class="blog-wrap">
-    <article class="featured-post">
+  <!-- ── BLOG LIST VIEW ── -->
+  <main class="blog-wrap" id="blog-list">
+    <article class="featured-post" onclick="openPost('first-home')">
       <div class="featured-media">
         <img src="assets/images/blog/post-04.png" alt="Buying your first home">
       </div>
@@ -155,45 +180,127 @@
         <h2>What Nobody Tells You About Buying Your First Home in LA</h2>
         <p>After years in the market, Laura knows that buyers do better when they understand the process before they fall in love with a home. This article covers practical expectations, financing conversations and what truly matters during the first search.</p>
         <p class="meta">March 2026 · 5 min read</p>
-        <a href="blog-post.html" class="section-link" style="margin-top:24px;display:inline-block;">Read article</a>
+        <span class="section-link" style="margin-top:24px;display:inline-block;">Read article</span>
       </div>
     </article>
 
     <section style="margin-top:26px;">
       <div class="articles-grid">
-        <a href="blog-post.html" class="article-card">
-          <div class="article-card-img">
-            <img src="assets/images/blog/post-02.png" alt="Selling during a divorce">
-          </div>
+        <div class="article-card" onclick="openPost('divorce')">
+          <div class="article-card-img"><img src="assets/images/blog/post-02.png" alt="Selling during a divorce"></div>
           <div class="article-body">
             <p class="section-kicker">Life Transitions</p>
             <h3>Selling During a Divorce: 5 Things to Know</h3>
             <p>A calmer structure helps everyone move through a difficult situation with more confidence.</p>
           </div>
-        </a>
-        <a href="blog-post.html" class="article-card">
-          <div class="article-card-img">
-            <img src="assets/images/blog/post-03.png" alt="Down payment assistance">
-          </div>
+        </div>
+        <div class="article-card" onclick="openPost('downpayment')">
+          <div class="article-card-img"><img src="assets/images/blog/post-03.png" alt="Down payment assistance"></div>
           <div class="article-body">
             <p class="section-kicker">First-Time Buyers</p>
             <h3>Down Payment Assistance in 2026</h3>
             <p>Programs change, eligibility changes and timing matters. Here is what to ask about early.</p>
           </div>
-        </a>
-        <a href="blog-post.html" class="article-card">
-          <div class="article-card-img">
-            <img src="assets/images/blog/post-01.png" alt="LA market">
-          </div>
+        </div>
+        <div class="article-card" onclick="openPost('la-market')">
+          <div class="article-card-img"><img src="assets/images/blog/post-01.png" alt="LA market"></div>
           <div class="article-body">
             <p class="section-kicker">Market Insight</p>
             <h3>The LA Market Right Now</h3>
             <p>A short perspective on rates, inventory and what Laura is telling clients today.</p>
           </div>
-        </a>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- ── ARTICLE VIEW ── -->
+  <div id="article-view">
+    <div class="post-wrap">
+      <article>
+        <span class="back-link" onclick="closePosts()">Back to Blog</span>
+        <header>
+          <span class="article-tag" id="art-tag"></span>
+          <h1 class="article-title" id="art-title"></h1>
+          <div class="article-meta" id="art-meta"></div>
+        </header>
+        <div class="article-hero">
+          <img id="art-img" src="" alt="">
+        </div>
+        <div class="article-body-text" id="art-body"></div>
+        <div class="article-footer-author">
+          <div class="author-avatar">
+            <img src="assets/images/laura-avatar.jpg" alt="Laura" onerror="this.style.display='none'">
+          </div>
+          <div>
+            <div class="author-name">Laura D'Hernandez</div>
+            <div class="author-title">REALTOR® · DRE #01820066 · (562) 862-1902</div>
+          </div>
+        </div>
+      </article>
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <p class="sidebar-card-title">About Laura</p>
+          <div class="sidebar-laura">
+            <div class="sidebar-photo"><img src="assets/images/laura-avatar.jpg" alt="Laura" onerror="this.style.display='none'"></div>
+            <div>
+              <div class="sidebar-name">Laura D'Hernandez</div>
+              <div class="sidebar-cred">REALTOR® · Since 2007</div>
+            </div>
+          </div>
+          <p class="sidebar-bio">California REALTOR® serving LA County since 2007. Bilingual (EN/ES), specializing in first-time buyers, divorce home sales and commercial real estate.</p>
+          <a href="contact.html" class="btn-primary sidebar-cta">Book a Consultation</a>
+        </div>
+        <div class="sidebar-card">
+          <p class="sidebar-card-title">More Articles</p>
+          <div class="related-post" onclick="openPost('first-home')">
+            <div class="related-thumb"><img src="assets/images/blog/post-04.png" alt=""></div>
+            <div><span class="related-tag">Home Buying</span><p class="related-title">What Nobody Tells You About Buying Your First Home in LA</p></div>
+          </div>
+          <div class="related-post" onclick="openPost('divorce')">
+            <div class="related-thumb"><img src="assets/images/blog/post-02.png" alt=""></div>
+            <div><span class="related-tag">Life Transitions</span><p class="related-title">Selling During a Divorce: 5 Things to Know</p></div>
+          </div>
+          <div class="related-post" onclick="openPost('downpayment')">
+            <div class="related-thumb"><img src="assets/images/blog/post-03.png" alt=""></div>
+            <div><span class="related-tag">First-Time Buyers</span><p class="related-title">Down Payment Assistance in 2026</p></div>
+          </div>
+          <div class="related-post" onclick="openPost('la-market')">
+            <div class="related-thumb"><img src="assets/images/blog/post-01.png" alt=""></div>
+            <div><span class="related-tag">Market Insight</span><p class="related-title">The LA Market Right Now</p></div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <p class="sidebar-card-title">Follow Laura</p>
+          <div class="social-pills" style="flex-direction:column;">
+            <a href="https://www.instagram.com/tucasaconlaura/" target="_blank" rel="noopener"><i class="bi bi-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/TuCasaConLaura/" target="_blank" rel="noopener"><i class="bi bi-facebook"></i> Facebook</a>
+            <a href="https://www.tiktok.com/@tucasaconlaura" target="_blank" rel="noopener"><i class="bi bi-tiktok"></i> TikTok</a>
+            <a href="https://www.linkedin.com/in/tucasaconlaura" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="contact-strip" style="margin-bottom:60px;">
+      <div>
+        <h2 class="contact-strip-title">Questions about<br><em>your situation?</em></h2>
+        <p class="contact-strip-sub">Let's talk about your home, your goals, and your timeline — no commitment required.</p>
+      </div>
+      <div class="contact-strip-right">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5.06 3h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.61a2 2 0 0 1-.45 2.11l-.93.93a16 16 0 0 0 6 6l.93-.93a2 2 0 0 1 2.11-.45c.83.32 1.71.54 2.61.66A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Call or Text</div>
+            <div class="contact-info-value">(562) 862-1902</div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn-primary">Get in Touch</a>
+      </div>
+    </section>
+  </div>
 
   <footer>
     <div class="footer-grid">
@@ -204,9 +311,9 @@
       <div>
         <p class="footer-col-title">Navigate</p>
         <ul class="footer-links">
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="webinars.html">Videos</a></li>
+          <li><a href="index.html#about">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -229,6 +336,255 @@
       <span>tucasaconlaura.com</span>
     </div>
   </footer>
+
   <script src="js/main.js"></script>
+  <script>
+    /* ── POST DATA ── */
+    const POSTS = {
+      'first-home': {
+        tag: 'Home Buying',
+        title: 'What Nobody Tells You About Buying Your<br><em>First Home in LA</em>',
+        meta: '<span>March 2026</span><span>5 min read</span><span>By Laura D\'Hernandez</span>',
+        img: 'assets/images/blog/post-04.png',
+        heroEyebrow: 'Home Buying',
+        heroTitle: 'What Nobody Tells You<br><em>About Buying in LA</em>',
+        body: `
+          <p>After nearly two decades helping homeowners sell in the Los Angeles market, the most common — and most costly — mistake I see is overpricing at the start. Sellers often believe they can list high and negotiate down. What actually happens is very different.</p>
+
+          <h2>1. The first two weeks are everything</h2>
+          <p>When a home hits the market, it generates the most attention in its first 10 to 14 days. Buyers who have been searching for months are waiting. If your price is right, that initial surge of attention translates into showings, offers, and competition. If the price is too high, serious buyers skip it.</p>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>The best offers almost always come within the first two weeks. Pricing correctly from day one is how you capture that energy.</p>
+          </div>
+
+          <h2>2. Days on market work against you</h2>
+          <p>Buyers and their agents track how long a property has been listed. A home sitting on the market for 45 or 60 days sends an unspoken message: <em>something is wrong, or it's overpriced.</em></p>
+          <p>Even if you reduce the price later, the stigma of a stale listing follows it. Buyers start asking what's wrong. Offers come in lower.</p>
+
+          <blockquote>"We listed at what felt right to us. After 8 weeks and two price cuts, Laura helped us reset the strategy. We closed — but we left money on the table." — A seller, San Gabriel Valley</blockquote>
+
+          <h2>3. How a correct price actually creates competition</h2>
+          <p>Strategic pricing isn't just about being accurate — sometimes it's about being slightly below market to generate multiple offers. In the right conditions, this approach creates a competitive environment where buyers bid up the price above asking.</p>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>Multiple offers aren't luck — they're the result of correct preparation, strategic pricing, and good marketing timing. When all three align, buyers compete. That competition works entirely in your favor.</p>
+          </div>
+
+          <h2>4. What goes into a well-priced listing</h2>
+          <p>A proper Comparative Market Analysis (CMA) considers:</p>
+          <ul>
+            <li><strong>Recent closed sales</strong> — properties that have actually sold within the last 90 days.</li>
+            <li><strong>Active competition</strong> — what buyers can buy right now if they pass on your home.</li>
+            <li><strong>Pending sales</strong> — where the market is heading, not just where it has been.</li>
+            <li><strong>Condition and updates</strong> — a renovated kitchen can justify a premium, but it must be grounded in what buyers are actually paying.</li>
+            <li><strong>Micro-location factors</strong> — school district boundaries, proximity to busy roads, views, lot size.</li>
+          </ul>
+
+          <h2>5. The emotional side of pricing</h2>
+          <p>I understand that your home isn't just a financial asset — it carries memories, years of improvements, and a deep personal attachment. My job is to be honest with you — respectfully, but directly. The market doesn't know what your home means to you; it only knows what buyers are willing to pay.</p>
+          <p>If you're thinking about selling, I'm happy to give you a no-obligation market evaluation. Call or text me at <strong>(562) 862-1902</strong>.</p>
+        `
+      },
+      'divorce': {
+        tag: 'Life Transitions',
+        title: 'Selling During a Divorce:<br><em>5 Things to Know</em>',
+        meta: '<span>February 2026</span><span>5 min read</span><span>By Laura D\'Hernandez</span>',
+        img: 'assets/images/blog/post-02.png',
+        heroEyebrow: 'Life Transitions',
+        heroTitle: 'Selling During a Divorce:<br><em>5 Things to Know</em>',
+        body: `
+          <p>Selling a home during a divorce is one of the most emotionally complex real estate situations that exists. Two people who are navigating a deeply personal transition are also trying to coordinate a major financial transaction — often with different priorities, different timelines, and different levels of readiness.</p>
+          <p>I've worked with clients in this situation many times, and I've found that a clear structure helps everyone move through it with more confidence and less conflict. Here are five things I believe every couple going through a divorce sale should understand before they start.</p>
+
+          <h2>1. Decide early whether you're selling or one person is buying out the other</h2>
+          <p>This is the foundational decision, and it's the one that shapes everything else. There are two paths:</p>
+          <ul>
+            <li><strong>Sell the home and divide the proceeds.</strong> This is the most common outcome and typically the most straightforward — particularly when both parties want a clean financial separation.</li>
+            <li><strong>One spouse buys out the other.</strong> This requires the buying spouse to qualify for a new mortgage on their own income and credit. This is possible in many situations, but it requires careful financial planning and coordination with a lender.</li>
+          </ul>
+          <p>Making this decision clearly and early — ideally with guidance from your attorneys and a trusted real estate professional — allows everything else to move forward more smoothly.</p>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>Before engaging an agent, have a direct conversation — together or through your attorneys — about which outcome you're pursuing. An agent can work effectively with both parties, but only when the goal is clear.</p>
+          </div>
+
+          <h2>2. Agree on the listing process before it starts</h2>
+          <p>One of the most common sources of conflict in divorce sales is disagreement during the selling process — not before it. To avoid this, I encourage both parties to align on a few key questions before the home goes on market:</p>
+          <ul>
+            <li>What is the minimum acceptable sale price?</li>
+            <li>What improvements, repairs or staging are both parties willing to authorize?</li>
+            <li>How will showing requests and scheduling be handled?</li>
+            <li>What is the target timeline for closing?</li>
+          </ul>
+          <p>Answering these questions together — and in writing if needed — removes a significant amount of friction from the process later.</p>
+
+          <h2>3. Both parties need to sign the listing agreement (unless a court has ordered otherwise)</h2>
+          <p>This is a legal requirement. If both names are on the title, both parties must authorize the sale. In situations where one party is uncooperative, a court order may be required to compel the sale. I've worked in situations where this was necessary, and while it adds time and complexity, it is a path that exists.</p>
+          <p>If your divorce involves contested property, please work closely with your family law attorney and communicate clearly with your real estate agent about any legal proceedings that may affect the timeline or authority to sell.</p>
+
+          <h2>4. Understand the tax implications before you close</h2>
+          <p>The IRS allows married couples filing jointly to exclude up to $500,000 of capital gains on the sale of a primary residence (single filers can exclude up to $250,000), provided certain requirements are met. In a divorce situation, how those exclusions apply can get complicated — particularly if only one spouse has been living in the home, or if the sale happens after the divorce is finalized.</p>
+          <p>I am not a tax advisor, and this is an area where the guidance of a CPA or tax attorney is important. I raise it here because I've seen clients surprised by a tax bill they didn't anticipate after closing. Ask the question early.</p>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>Consult a CPA before you close — not after. Understanding the tax picture can affect decisions about timing, pricing, and how proceeds are structured.</p>
+          </div>
+
+          <h2>5. Work with an agent both parties trust, or a neutral third party</h2>
+          <p>The relationship with your real estate agent in a divorce sale needs to work for both parties. I approach these situations as a neutral professional — my job is to get the best outcome for the property, handle communication clearly, and reduce friction wherever possible.</p>
+          <p>If both parties agree to work with me, I make sure that both receive equal communication, that decisions are made collaboratively wherever possible, and that the process stays focused on the shared goal: a successful sale at the best possible price.</p>
+          <p>If you're navigating a divorce and need to understand your options, I'm available for a confidential, no-pressure conversation. Call or text me at <strong>(562) 862-1902</strong>.</p>
+        `
+      },
+      'downpayment': {
+        tag: 'First-Time Buyers · Market Insight',
+        title: 'Down Payment Assistance<br><em>in 2026</em>',
+        meta: '<span>March 2026</span><span>5 min read</span><span>By Laura D\'Hernandez</span>',
+        img: 'assets/images/blog/post-03.png',
+        heroEyebrow: 'First-Time Buyers',
+        heroTitle: 'Down Payment Assistance<br><em>in 2026</em>',
+        body: `
+          <p>One of the most common things I hear from first-time buyers is: <em>"I don't have enough saved for a down payment yet."</em> What I tell them next usually surprises them — because California has some of the most generous down payment assistance programs in the country, and most buyers have no idea they exist or that they qualify.</p>
+
+          <h2>1. The 20% myth — what you actually need</h2>
+          <p>The idea that you need 20% down to buy a home is one of the most persistent myths in real estate. In reality, down payments can range from 3.5% to 20% depending on the loan type:</p>
+          <ul>
+            <li><strong>FHA loans</strong> — as little as 3.5% down, with more flexible credit requirements. Note that FHA loans require a Mortgage Insurance Premium (MIP), both upfront and monthly.</li>
+            <li><strong>VA loans</strong> — for current or former members of the U.S. armed forces. Can require zero down payment and often come with lower interest rates.</li>
+            <li><strong>Conventional loans</strong> — available with as little as 5% down. Putting less than 20% typically adds Private Mortgage Insurance (PMI) to your monthly costs, but that's manageable and goes away as you build equity.</li>
+          </ul>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>Don't open new credit card accounts or take on any new debt for at least six months before applying for a mortgage. New accounts can lower your score and complicate your approval.</p>
+          </div>
+
+          <h2>2. California's assistance programs right now</h2>
+          <p>California, through the California Housing Finance Agency (CalHFA), offers multiple programs to help first-time buyers:</p>
+          <ul>
+            <li><strong>MyHome Assistance Program</strong> — provides a deferred-payment junior loan of up to 3.5% of the purchase price. No monthly payments — it's due when you sell or refinance.</li>
+            <li><strong>Dream For All Shared Appreciation Loan</strong> — the state contributes up to 20% of the purchase price. In exchange, you share a portion of the home's appreciation when you sell. This program opens in limited funding windows and moves fast.</li>
+            <li><strong>Local city and county programs</strong> — many cities across LA County have their own funds that can sometimes be stacked on top of state programs for even greater benefit.</li>
+          </ul>
+
+          <blockquote>"I thought homeownership was years away. Laura found a program that covered most of our down payment. We closed in 45 days." — A recent client, Los Angeles County</blockquote>
+
+          <h2>3. What you'll need to get started</h2>
+          <p>Start gathering these documents early:</p>
+          <ul>
+            <li>Federal tax returns for the last two years</li>
+            <li>W-2s or 1099 statements for the last two years</li>
+            <li>Bank statements for the last two months</li>
+            <li>Recent pay stubs and proof of any other income</li>
+            <li>Information about current debts (car, student loans, credit cards)</li>
+          </ul>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>Start working with a lender who specializes in first-time buyer programs and CalHFA loans — not all lenders are approved to originate these products. Getting pre-approved early gives you the most options.</p>
+          </div>
+
+          <h2>4. What to do right now</h2>
+          <p>If you're interested in exploring what assistance you might qualify for, the most productive first step is a conversation with both a knowledgeable lender and an agent who understands the programs available in your target area. The programs available to you depend on your income, the county you're buying in, and the type of loan you're using.</p>
+          <p>I work with first-time buyers throughout LA County, Riverside and San Bernardino and can point you toward lenders who know these programs in depth. Call or text me at <strong>(562) 862-1902</strong> to get the conversation started.</p>
+        `
+      },
+      'la-market': {
+        tag: 'Market Insight',
+        title: 'The LA Market<br><em>Right Now</em>',
+        meta: '<span>March 2026</span><span>4 min read</span><span>By Laura D\'Hernandez</span>',
+        img: 'assets/images/blog/post-01.png',
+        heroEyebrow: 'Market Insight',
+        heroTitle: 'The LA Market<br><em>Right Now</em>',
+        body: `
+          <p>Every week I talk to buyers and sellers who are trying to make sense of the current moment in real estate. The same questions keep coming up. Is it a good time to buy? Should I wait for rates to drop? Is there anything available? My short answer: it depends on your situation. But the longer answer is more useful.</p>
+
+          <h2>On rates: adjust your expectations, not your plans</h2>
+          <p>Mortgage rates have been elevated compared to the lows buyers experienced a few years ago. The reality is that waiting for rates to fall to a specific number before buying is a gamble — and one that has cost many buyers who kept waiting while prices continued to hold or rise.</p>
+          <p>What I tell clients: buy when it makes sense for your life and your finances, not when the news says rates are perfect. If rates drop significantly after you close, you can refinance. If prices rise while you wait, that opportunity is gone.</p>
+
+          <div class="article-tip">
+            <span class="article-tip-label">Laura's Tip</span>
+            <p>Get pre-approved before you start seriously looking at homes. In this market, sellers are much more likely to take your offer seriously — and you'll have a clear picture of what you can realistically afford.</p>
+          </div>
+
+          <h2>On inventory: limited, but not frozen</h2>
+          <p>Inventory in LA County remains tight in most price ranges. Well-priced, well-presented homes still move quickly — often with multiple offers in the first two weeks.</p>
+          <p>That said, the frenzied bidding-war environment of 2021–2022 has cooled. Buyers have more time to think. Sellers who overprice are seeing their homes sit. The market is more balanced, which means there's room to negotiate — but only on properties that aren't generating strong demand from the start.</p>
+
+          <h2>On sellers: preparation is the differentiator</h2>
+          <p>The sellers doing best right now treat their listing like a product launch:</p>
+          <ul>
+            <li><strong>Pricing it right from day one.</strong> An overpriced home doesn't generate showings — and a home without showings doesn't sell.</li>
+            <li><strong>Preparing the home thoroughly.</strong> Declutter, deep clean, add fresh paint where needed. Buyers form their impression within 30 seconds of walking through the door.</li>
+            <li><strong>Marketing it widely and professionally.</strong> More than 75% of buyers start their home search online. High-quality photos and broad MLS exposure are not optional.</li>
+          </ul>
+
+          <blockquote>"The market felt intimidating at first. Laura helped us understand what we were looking at and what to focus on. We stopped waiting and started moving — and we're glad we did." — A buyer, Torrance</blockquote>
+
+          <h2>What I'm telling clients today</h2>
+          <p>For buyers: the time to prepare is now, not when you feel ready to buy. Get pre-approved, understand your numbers, and start building a clear picture of the neighborhoods and price ranges that work for you.</p>
+          <p>For sellers: preparation and pricing are everything. A well-priced, well-presented home in this market will sell. One that isn't may sit — and in real estate, sitting is expensive.</p>
+          <p>If you'd like to talk through your specific situation, I'm always available for a no-obligation conversation. Call or text me at <strong>(562) 862-1902</strong>.</p>
+        `
+      }
+    };
+
+    /* ── ROUTER ── */
+    function openPost(slug) {
+      const post = POSTS[slug];
+      if (!post) return;
+
+      document.getElementById('art-tag').textContent = post.tag;
+      document.getElementById('art-title').innerHTML = post.title;
+      document.getElementById('art-meta').innerHTML = post.meta;
+      document.getElementById('art-img').src = post.img;
+      document.getElementById('art-img').alt = post.tag;
+      document.getElementById('art-body').innerHTML = post.body;
+
+      // Update hero
+      document.getElementById('hero-eyebrow').textContent = post.heroEyebrow;
+      document.getElementById('hero-title').innerHTML = post.heroTitle;
+
+      document.getElementById('blog-list').style.display = 'none';
+      document.getElementById('article-view').classList.add('visible');
+
+      // Update URL hash without reload
+      history.pushState({ post: slug }, '', '#post-' + slug);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closePosts() {
+      document.getElementById('blog-list').style.display = '';
+      document.getElementById('article-view').classList.remove('visible');
+      document.getElementById('hero-eyebrow').textContent = 'Blog';
+      document.getElementById('hero-title').innerHTML = 'Real estate advice with<br><em>clarity and care.</em>';
+      history.pushState({}, '', 'blog.html');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Handle hash on load (links from other pages)
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = location.hash;
+      const map = {
+        '#post-pricing': 'first-home',
+        '#post-divorce': 'divorce',
+        '#post-downpayment': 'downpayment',
+        '#post-la-market': 'la-market',
+      };
+      if (map[hash]) openPost(map[hash]);
+    });
+
+    // Back button
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.post) openPost(e.state.post);
+      else closePosts();
+    });
+  </script>
 </body>
 </html>
